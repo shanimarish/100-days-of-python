@@ -1,4 +1,3 @@
-#Day 1 - Beginner - Working with Variables in Python to Manage Data
 #Day 1 Project: Band Name Generator
 
 print("Welcome to the Band Name Generator!")
