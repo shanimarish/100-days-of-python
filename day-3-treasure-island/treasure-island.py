@@ -3,11 +3,11 @@
 print("Welcome to Treasure Island.")
 print("Your mission is to find the treasure.")
 
-user_direction = input("\nWhere do you want to go? Do you want to walk left or right?: ")
+user_direction = input('\nWhere do you want to go? Do you want to walk "left" or "right"?: ').lower()
 if user_direction == "left":
-    user_action = input("\nAwesome! You found a river. Do you want to swim or wait?: ")
+    user_action = input('\nAwesome! You found a river. Do you want to "swim" or "wait"?: ').lower()
     if user_action == "wait":
-        user_house_color = input("\nSomeone saw you and offer you to ride the boat! \nHe dropped you off to an island with three mysterious houses. \nShould you go inside the red, yellow, or blue house?: ")
+        user_house_color = input('\nSomeone saw you and offer you to ride the boat! \nHe dropped you off to an island with three mysterious houses. \nShould you go inside the "red", "yellow", or "blue" house?: ').lower()
         if user_house_color == "red":
             print("\nAn arsonist burned the house while you're inside. Game over!")
         elif user_house_color == "blue":
