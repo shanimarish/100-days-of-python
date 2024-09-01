@@ -1,4 +1,4 @@
-#Day 3 Project: Treasure Island
+# Day 3 Project: Treasure Island
 
 print("Welcome to Treasure Island.")
 print("Your mission is to find the treasure.")
