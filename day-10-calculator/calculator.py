@@ -21,10 +21,11 @@ operations = {
     "*": multiply,
     "/": divide
 }
-def calculator():
-    should_continue = True
-    first_num = float(int(input("What's the first number? ")))
 
+def calculator():
+    first_num = float(int(input("What's the first number? ")))
+    
+    should_continue = True
     while should_continue:
         operation_symbol = input("""Pick a mathematical operation!
         Operations: "+", "-", "*" or "/": """)
