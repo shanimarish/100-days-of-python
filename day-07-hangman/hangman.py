@@ -3,22 +3,19 @@
 import random
 import hangman_art
 import hangman_words
-
-lives = 6
-
 print(hangman_art.logo)
 
+lives = 6
 chosen_word = random.choice(hangman_words.word_list)
 
 placeholder = ""
-
 for letter_position in range(0, len(chosen_word)):
     placeholder += "_"
 print(f"\nWord to guess: {placeholder}")
 
-game_over = False
 correct_letters = []
 
+game_over = False
 while not game_over:
     print(f"\n\n****************************{lives}/6 LIVES LEFT****************************")
     guess = str(input("\nGuess a letter: ")).lower()
