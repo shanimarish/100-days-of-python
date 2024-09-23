@@ -1,4 +1,4 @@
-# Day 10 Project: Blackjack
+# Day 11 Project: Blackjack
 
 import random
 import blackjack_art
