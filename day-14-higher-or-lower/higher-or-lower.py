@@ -5,6 +5,7 @@ import higher_or_lower_art
 import higher_or_lower_data
 
 def data_picker():
+    """Selects a random artist from the dataset."""
     artist_data = higher_or_lower_data.data
     random_artist = random.choice(artist_data)
     return random_artist
@@ -12,6 +13,7 @@ def data_picker():
 user_score = 0
 
 def play_game(artist_a = None, show_score = False):
+    """Plays a round of the game."""
     global user_score
     
     if artist_a is None:
@@ -19,6 +21,7 @@ def play_game(artist_a = None, show_score = False):
         
     artist_b = data_picker()
     
+    # Ensure artist_a and artist_b are not identical.
     while artist_a == artist_b:
         random_artist_b = data_picker
     
@@ -30,6 +33,7 @@ def play_game(artist_a = None, show_score = False):
     
     print(higher_or_lower_art.logo)
     
+    # Print score message after the first round
     if show_score:
         print(f"You're right! Current score: {user_score}")
         
@@ -39,15 +43,21 @@ def play_game(artist_a = None, show_score = False):
     
     user_choice = input("Who has more followers? Type 'A' or 'B': ").upper()
     
+    # Validate user choice
+    while user_choice not in ['A', 'B']:
+        user_choice = input("Invalid choice. Please type 'A' or 'B': ").upper()
+    
     if user_choice == "A":
         if artist_a_followers > artist_b_followers:
             user_score += 1
+            print("\n" * 20)
             play_game(artist_b, show_score = True)
         else:
             print(f"Sorry, that's wrong. Final Score: {user_score}")
     elif user_choice == "B":
         if artist_b_followers > artist_a_followers:
             user_score += 1
+            print("\n" * 20)
             play_game(artist_b, show_score = True)
         else:
             print(f"Sorry, that's wrong. Final Score: {user_score}")
