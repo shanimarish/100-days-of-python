@@ -53,6 +53,8 @@ def play_game(artist_a = None, show_score = False):
             print("\n" * 20)
             play_game(artist_b, show_score = True)
         else:
+            print("\n" * 20)
+            print(higher_or_lower_art.logo)
             print(f"Sorry, that's wrong. Final Score: {user_score}")
     elif user_choice == "B":
         if artist_b_followers > artist_a_followers:
@@ -60,6 +62,8 @@ def play_game(artist_a = None, show_score = False):
             print("\n" * 20)
             play_game(artist_b, show_score = True)
         else:
+            print("\n" * 20)
+            print(higher_or_lower_art.logo)
             print(f"Sorry, that's wrong. Final Score: {user_score}")
             
 play_game()
