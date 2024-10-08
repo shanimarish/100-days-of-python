@@ -57,14 +57,14 @@ def process_coins(drink_name):
     drink_cost = MENU[drink_name]["cost"]
     
     print(f"The {drink_name} costs {drink_cost} pesos.")
-    user_money = int(input("How much will you pay? "))
+    user_money = float(input("How much will you pay? "))
     
     
     if user_money < drink_cost:
         print(f"Sorry, that's not enough money to buy {drink_name}. Money refunded!")
         return
     elif user_money > drink_cost:
-        user_change = user_money - drink_cost
+        user_change = round(user_money - drink_cost, 2)
         print(f"Here is {user_change} pesos in change.")
         resources["money"] += drink_cost   
         make_coffee(drink_name)  
