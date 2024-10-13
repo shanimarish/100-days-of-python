@@ -1,3 +1,5 @@
+# Day 15 Project: Coffee Machine 
+
 MENU = {
     "espresso": {
         "ingredients": {
@@ -34,10 +36,7 @@ resources = {
 def check_resources(coffee_drink):
     """Check if there are sufficient resources to make the drink."""
     if coffee_drink == "report":
-        print(f"Water: {resources["water"]}ml")
-        print(f"Milk: {resources["milk"]}ml")
-        print(f"Coffee: {resources["coffee"]}ml")
-        print(f"Money: {resources["money"]} pesos")
+        report_resources()
         return
     
     if coffee_drink in MENU:
@@ -46,74 +45,61 @@ def check_resources(coffee_drink):
         for item in ingredients:
             if ingredients[item] > resources.get(item, 0):
                 print(f"Sorry, there is not enough {item}.")    
-                return 
-        process_coins(coffee_drink)
+                return False
+        return True
     else:
         print("Sorry, that drink is not on the menu.")
-        return 
+        return False
     
+def report_resources():
+    """Print the resources available."""    
+    print(f"Water: {resources["water"]}ml")
+    print(f"Milk: {resources["milk"]}ml")
+    print(f"Coffee: {resources["coffee"]}g")
+    print(f"Money: {resources["money"]} pesos")
+        
 def process_coins(drink_name):
     """Compute the right amount of money for the drink."""
     drink_cost = MENU[drink_name]["cost"]
     
-    print(f"The {drink_name} costs {drink_cost} pesos.")
-    user_money = float(input("How much will you pay? "))
-    
-    
+    user_money = float(input(f"The {drink_name} costs {drink_cost} pesos. How much will you pay? "))
+
     if user_money < drink_cost:
         print(f"Sorry, that's not enough money to buy {drink_name}. Money refunded!")
-        return
+        return False
     elif user_money > drink_cost:
         user_change = round(user_money - drink_cost, 2)
         print(f"Here is {user_change} pesos in change.")
         resources["money"] += drink_cost   
-        make_coffee(drink_name)  
+        return True 
     else:
         resources["money"] += drink_cost  
-        make_coffee(drink_name) 
+        return True 
 
 def make_coffee(drink_resources):
     """Deduct the coffee ingredients from the resources."""
     ingredients = MENU[drink_resources]["ingredients"]
     
-    print(f"""
-              Report before purchasing latte:
-              Water: {resources["water"]}ml
-              Milk: {resources["milk"]}ml
-              Coffee: {resources["coffee"]}ml
-            """)
-    
     for item in ingredients:
         resources[item] -= ingredients[item]
         
-    print(f"""
-              Report after purchasing latte:
-              Water: {resources["water"]}ml
-              Milk: {resources["milk"]}ml
-              Coffee: {resources["coffee"]}ml
-            """)
     print(f"Here is your {drink_resources}. Enjoy!")
 
 def coffee_machine():
     """Make the coffee order."""
-    should_continue = True 
-    
-    while should_continue != False:
-        user_input = input("What would you like? (Espresso/Latte/Cappuccino): ").lower()
-    
+    while True:
+        user_input = input("What would you like? (espresso/latte/cappuccino): ").lower()
+
         if user_input == "off":
             print("Turning off the coffee machine. Goodbye!")
-            should_continue = False
-        else:
-            check_resources(user_input)
-            
-        if should_continue:
-            another_order = input("Do you want to order again? Type 'y' or 'n': ").lower()
-            if another_order == "y":
-                user_input = input("What would you like? (Espresso/Latte/Cappuccino): ").lower()
-                check_resources(user_input) 
-            else: 
-                print("Thank you for your order. Bye!")
-                should_continue = False
+            break
+        
+        if user_input == "report":
+            report_resources()
+            continue 
+
+        if check_resources(user_input):
+            if process_coins(user_input):
+                make_coffee(user_input)
             
 coffee_machine()
