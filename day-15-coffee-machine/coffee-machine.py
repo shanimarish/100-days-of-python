@@ -40,8 +40,7 @@ def check_resources(coffee_drink):
         return
     
     if coffee_drink in MENU:
-        ingredients = MENU[coffee_drink]["ingredients"]
-        
+        ingredients = MENU[coffee_drink]["ingredients"]    
         for item in ingredients:
             if ingredients[item] > resources.get(item, 0):
                 print(f"Sorry, there is not enough {item}.")    
@@ -61,9 +60,19 @@ def report_resources():
 def process_coins(drink_name):
     """Compute the right amount of money for the drink."""
     drink_cost = MENU[drink_name]["cost"]
-    
-    user_money = float(input(f"The {drink_name} costs {drink_cost} pesos. How much will you pay? "))
+    print(f"The {drink_name} costs {drink_cost} pesos.")
 
+    # Ask the user to input the number of each type of coin.
+    one_peso = int(input("How many 1 peso coins? "))
+    five_peso = int(input("How many 5 peso coins? "))
+    ten_peso = int(input("How many 10 peso coins? "))
+    twenty_peso = int(input("How many 20 peso coins? "))
+
+    # Calculate the total money inserted.
+    user_money = (one_peso * 1) + (five_peso * 5) + (ten_peso * 10) + (twenty_peso * 20)
+    print(f"Total inserted: {user_money} pesos.")
+
+    # Check if the user inserted enough money.
     if user_money < drink_cost:
         print(f"Sorry, that's not enough money to buy {drink_name}. Money refunded!")
         return False
@@ -74,15 +83,13 @@ def process_coins(drink_name):
         return True 
     else:
         resources["money"] += drink_cost  
-        return True 
+        return True
 
 def make_coffee(drink_resources):
     """Deduct the coffee ingredients from the resources."""
     ingredients = MENU[drink_resources]["ingredients"]
-    
     for item in ingredients:
         resources[item] -= ingredients[item]
-        
     print(f"Here is your {drink_resources}. Enjoy!")
 
 def coffee_machine():
