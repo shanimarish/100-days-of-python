@@ -4,11 +4,11 @@ from turtle import Turtle, Screen
 import random
 
 tim = Turtle()
-colors = ["cornflower blue", "light sky blue", "teal", "sandy brown", "peach puff", "light salmon", "gold", "medium purple", "light pink"]
-angle = [0, 90, 180, 270]
-
 tim.pensize(10)
 tim.speed("fast")
+
+colors = ["cornflower blue", "light sky blue", "teal", "sandy brown", "peach puff", "light salmon", "gold", "medium purple", "light pink"]
+angle = [0, 90, 180, 270]
 
 for _ in range(random.randint(100, 300)): 
     tim.color(random.choice(colors))
