@@ -1,3 +1,5 @@
+# Day 18 Project: The Hirst Painting
+
 # import colorgram
 #
 # rgb_colors = []
