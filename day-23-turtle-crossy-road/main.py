@@ -27,5 +27,6 @@ while game_is_on:
 
     if player.ycor() > 280:
         player.restart()
+        car_manager.increase_speed()
 
 screen.exitonclick()
