@@ -25,4 +25,7 @@ while game_is_on:
         if car.distance(player) < 20:
             game_is_on = False
 
+    if player.ycor() > 280:
+        player.restart()
+
 screen.exitonclick()
